@@ -1,75 +1,82 @@
-Personal Portfolio 🌐
+# 🌟 Sanjana Raj - Portfolio Website  
 
-This is my personal portfolio website built with Flask and Bootstrap.
-It showcases my skills, projects, and a contact form to reach me.
+Welcome to my personal portfolio built with **Flask** and **Bootstrap**.  
+This site showcases my skills, projects, and provides a way to get in touch with me.  
 
-🚀 Features
+---
 
-🖼️ Hero section with introduction
+## ✨ Features  
+✅ Modern responsive design  
+✅ About Me section with profile picture  
+✅ Dynamic Projects showcase  
+✅ Contact form with email integration  
+✅ Built with Flask & SQLAlchemy  
 
-🙋 About Me section with profile picture and bio
+---
 
-💼 Projects showcase with links
+## 🛠 Tech Stack  
+- **Backend:** Flask, SQLAlchemy  
+- **Frontend:** HTML, CSS, Bootstrap  
+- **Database:** SQLite  
+- **Email Service:** Flask-Mail (SMTP with Gmail)  
 
-📩 Contact form with email integration (Flask-Mail)
+---
 
-🎨 Responsive UI with custom CSS
-
-🛠️ Tech Stack
-
-Backend: Flask, SQLAlchemy
-
-Frontend: HTML, CSS, Bootstrap
-
-Database: SQLite
-
-Email Service: Flask-Mail (SMTP with Gmail)
-
-📂 Project Structure
-my_portfolio/
+## 📂 Project Structure  
+MY_PORTFOLIO/
 │── app.py
+│── config.py
 │── requirements.txt
-│── .env (not tracked in Git)
-│── instance/portfolio.db
-│── portfolio/
-│   ├── routes/
-│   ├── models.py
-│   └── extensions.py
-│── static/
-│   ├── css/
-│   ├── images/
-│── templates/
 │── README.md
-└── .gitignore
+│── .gitignore
+│── instance/
+│ └── portfolio.db # SQLite database (ignored in Git)
+│── portfolio/
+│ ├── init.py
+│ ├── extensions.py
+│ ├── models.py
+│ ├── routes/
+│ ├── static/
+│ │ ├── css/
+│ │ ├── images/
+│ │ └── js/
+│ └── templates/
+│ ├── index.html
+│ ├── contact.html
+│ └── base.html
+│── venv/ # Virtual environment (ignored in Git)
+└── pycache/ # Python cache files (ignored in Git)
 
-⚡ Setup Instructions
+---
 
-Clone the repository
+## ⚡ Installation & Setup  
 
-git clone https://github.com/your-username/portfolio.git
-cd portfolio
-
-
-Create a virtual environment
-
-python -m venv venv
-source venv/bin/activate  # for Linux/Mac
-venv\Scripts\activate     # for Windows
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/sanjana02562/portfolio.git
+   cd portfolio
 
 
-Install dependencies
-
-pip install -r requirements.txt
-
-
-Set up environment variables (.env)
-
-SECRET_KEY=your_secret_key
-DATABASE_URI=sqlite:///portfolio.db
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
+2. **Create a virtual environment**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # for Linux/Mac
+    venv\Scripts\activate     # for Windows
 
 
-Run the app
+3. **Install dependencies**
+    ```bash
+    pip install -r requirements.txt
 
-flask run
+
+4. **Set up environment variables (.env)**
+    ```ini
+    SECRET_KEY=your_secret_key
+    DATABASE_URI=sqlite:///portfolio.db
+    EMAIL_USER=your_email@gmail.com
+    EMAIL_PASS=your_app_password
+
+
+5. **Run the application**
+    ```bash
+    flask run
