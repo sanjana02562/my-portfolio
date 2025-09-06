@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h5>Hello, It's me</h5>
+    <h1 class="fw-bold">Sanjana Raj</h1>
+    <h3>And I'm a <span id="typing"></span></h3>
+    <div class="buttons">
+      <a href="resume.pdf" class="btn primary">Get Resume</a>
+      <a href="#skills" class="btn secondary">Contact Me</a>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/sanjana02562">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" />
+      </a>
+      <a href="https://www.linkedin.com/in/sanjana-raj-423a08284/">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg" />
+      </a>
+      <a href="#">
+        <i class="fa-solid fa-envelope" style="color: black; font-size: 2.3rem; vertical-align: middle;"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="{{ url_for('static', filename='images/pp.jpg') }}" 
+         alt="My Photo" class="profile-pic">
+  </div>
+</section>
+
+
+<section id="overview" class="about">
+  <div class="about-container">
+    <!-- Left Side: Image -->
+    <div class="about-image">
+      <img src="{{ url_for('static', filename='images/pp.jpg') }}" alt="About Me">
+    </div>
+
+    <!-- Right Side: Text -->
+    <div class="about-text">
+      <h1>About <span class="gradient-text" style="color:#6c63ff">Me</span></h1>
+      <p>
+        I am a passionate Full-Stack Python Developer with experience in building scalable applications, APIs, 
+        and interactive web platforms. Skilled in Python, Flask, Django, Java, and modern frontend technologies, 
+        I enjoy solving problems and creating user-friendly solutions. With a strong foundation in software 
+        development and hands-on experience in projects, I am eager to contribute to impactful and innovative work.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<div class="roles">
+  <!-- New ones -->
+  <div class="role-card">
+    <img src="{{ url_for('static', filename='images/python.webp') }}" alt="Python Developer">
+    <h3>Python Developer</h3>
+  </div>
+
+  <div class="role-card">
+    <img src="{{ url_for('static', filename='images/prompt.jpg') }}" alt="Prompt Engineer">
+    <h3>Prompt Engineer</h3>
+  </div>
+</div>
+
+
+
+<!-- Skills Section -->
+<section id="skills">
+  <h1 class="fw-bold">My Skills</h1>
+
+  <div class="skills-slider">
+    <div class="skills-track">
+
+      <!-- Skill cards -->
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML"><span>HTML</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS"><span>CSS</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"><span>JavaScript</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" alt="Flask"><span>Flask</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" alt="Django"><span>Django</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"><span>Git</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman"><span>Postman</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"><span>MySQL</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" alt="RESTful APIs"><span>RESTful APIs</span></div>
+
+      <!-- Duplicate for seamless loop -->
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML"><span>HTML</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS"><span>CSS</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"><span>JavaScript</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" alt="Flask"><span>Flask</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" alt="Django"><span>Django</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"><span>Git</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman"><span>Postman</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"><span>MySQL</span></div>
+      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" alt="RESTful APIs"><span>RESTful APIs</span></div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Projects Section -->
+<section class="mb-5 projects-section">
+  <h1 class="projects-title fw-bold">My Projects</h1>
+  <div class="row">
+    {% for project in projects %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          {% if project.image %}
+            <img src="{{ url_for('static', filename='images/' ~ project.image) }}" 
+                 class="card-img-top" alt="{{ project.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text">{{ project.description }}</p>
+            {% if project.link %}
+              <a href="{{ project.link }}" target="_blank" class="btn btn-primary">View Project</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+<!-- Certificates Section -->
+<section class="mb-5">
+  <h1 class="certificates-title mb-4 text-center fw-bold">My Certificates</h1> <!-- centered heading -->
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Python Full Stack</h5>
+          <p class="card-text">Issued by EduSkills Academy</p>
+          <a href="{{ url_for('static', filename='certificates/python_fullstack.pdf') }}" 
+             target="_blank" class="btn btn-outline-primary">View Certificate</a>
+        </div>
+      </div>
+    </div>
+    <!-- Add more certificates here -->
+  </div>
+</section>
+
+
+
+<!-- Typed.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+<script>
+  var typed = new Typed("#typing", {
+    strings: [
+      " <span class='gradient-text'>Python Developer</span> ",
+      " <span class='gradient-text'>Problem Solver</span> ",
+      " <span class='gradient-text'>Tech Enthusiast</span> ",
+      " <span class='gradient-text'>Lifelong Learner</span> "
+    ],
+    typeSpeed: 50,
+    backSpeed: 30,
+    backDelay: 500,
+    loop: true
+    //smartBackspace: true,
+    //contentType: "html"
+  });
+</script>
+
+
+{% endblock %}

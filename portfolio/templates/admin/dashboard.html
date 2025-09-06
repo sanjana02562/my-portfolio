@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<div class="row">
+  <div class="col-md-6">
+    <h4>Add New Project</h4>
+    <form method="POST" action="{{ url_for('admin.add_project') }}" class="bg-light p-3 rounded shadow-sm">
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control" rows="2" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Project Link</label>
+        <input type="url" name="link" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-success">Add Project</button>
+    </form>
+  </div>
+
+  <div class="col-md-6">
+    <h4>Messages</h4>
+    <ul class="list-group shadow-sm">
+      {% for msg in messages %}
+        <li class="list-group-item">
+          <strong>{{ msg.name }}</strong> ({{ msg.email }})<br>
+          {{ msg.content }}
+        </li>
+      {% else %}
+        <li class="list-group-item text-muted">No messages yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<hr class="my-4">
+
+<h4>Projects List</h4>
+<div class="row">
+  {% for project in projects %}
+    <div class="col-md-4 mb-3">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ project.title }}</h5>
+          <p class="card-text">{{ project.description }}</p>
+          <a href="{{ project.link }}" class="btn btn-primary btn-sm" target="_blank">View</a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <p>No projects added yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,452 @@
+body { 
+  font-family: Arial, sans-serif; 
+  margin: 0; 
+  overflow-x: hidden;
+  background: linear-gradient(to bottom, #0f172a, #1e293b);
+  color: #fff;
+}
+
+
+
+header { 
+  background: #222; 
+  color: #fff; 
+  padding: 20px; 
+  text-align: center; 
+}
+
+nav a { 
+  color: white; 
+  margin: 0 10px; 
+  text-decoration: none; 
+}
+
+.projects { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 20px; 
+  padding: 20px; 
+}
+
+.card { 
+  background: #f4f4f4; 
+  padding: 15px; 
+  border-radius: 10px; 
+  text-align: center; 
+}
+
+form { 
+  display: flex; 
+  flex-direction: column; 
+  max-width: 400px; 
+  margin: auto; 
+}
+
+form input, form textarea { 
+  margin: 10px 0; 
+  padding: 10px; 
+}
+
+button { 
+  background: #222; 
+  color: white; 
+  padding: 10px; 
+  border: none; 
+  cursor: pointer; 
+}
+
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  padding: 20px 60px;
+  background: linear-gradient(90deg, #4e54c8, #8f94fb); /* purple to blue */
+}
+
+.navbar.shrink {
+  padding: 8px 40px;
+  background: linear-gradient(90deg, #4e54c8, #8f94fb);
+}
+
+
+/* 🔹 New Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0 10%;
+  color: white;
+}
+/* Hero text refinements */
+.hero-content h5 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 0.2rem;   /* tighter gap with h1 */
+  color: #cbd5e1;
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;   /* small gap before h3 */
+  font-family: 'Poppins', sans-serif;
+  background: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-content h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #94a3b8;
+}
+
+.hero-content h3 span {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+
+.hero-content {
+  flex: 1;
+  max-width: 50%;
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.hero-content h3 {
+  font-size: 1.5rem;
+  margin: 15px 0;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid white;
+  box-shadow: 
+    0px 8px 25px rgba(0, 0, 0, 0.5),   /* dark soft shadow */
+    0px 0px 20px rgba(99, 102, 241, 0.6), /* indigo glow */
+    0px 0px 40px rgba(99, 102, 241, 0.4); /* wider glow */
+}
+
+
+/* Buttons */
+.buttons {
+  margin: 20px 0;
+}
+
+.buttons .btn {
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.btn.primary {
+  background: #6366f1; /* indigo */
+  border: 2px solid #6366f1;
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #4f46e5;
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 2px solid #6366f1;
+  color: #6366f1;
+}
+
+.btn.secondary:hover {
+  background: #6366f1;
+  color: white;
+}
+
+
+/* Social icons */
+.socials {
+  margin-top: 25px;
+}
+
+.socials a {
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.socials img {
+  width: 32px;
+  height: 32px;
+  filter: invert(100%);
+  transition: transform 0.3s ease;
+}
+
+.socials img:hover {
+  transform: scale(1.2);
+}
+
+.socials i {
+  width: 32px;
+  height: 32px;
+  filter: invert(100%);
+  transition: transform 0.3s ease;
+}
+
+.socials i:hover {
+  transform: scale(1.2);
+}
+
+#skills h1 {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 150px;
+  margin-bottom: 30px; /* 👈 adds gap below heading */
+}
+
+/* Skills Slider */
+.skills-slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  margin-top: 10px;
+}
+
+.skills-track {
+  display: flex;
+  gap: 20px;
+  width: calc(2 * 100%);             /* 👈 force it to span twice */
+  animation: scroll 25s linear infinite;
+}
+
+.skill-card {
+  padding: 30px 20px;
+  width: 120px;
+  height: 120px;
+  background: #111;
+  border-radius: 12px;
+  margin: 0 15px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.skill-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 8px;
+}
+
+.skill-card:hover {
+  transform: scale(1.1);
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.skills-track:hover {
+  animation-play-state: paused;
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 80px; /* top-bottom, left-right */
+}
+
+
+
+.about-container {
+  display: flex;
+  align-items: center;
+  
+  gap: 300px; /* bigger spacing between image and text */
+  max-width: 1100px;
+  margin: 0 auto;
+  
+}
+
+.about-image img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%; /* makes it round */
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 
+              0 0 25px rgba(108, 99, 255, 0.6); /* soft shadow + glow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-image img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 
+              0 0 35px rgba(108, 99, 255, 0.8); /* more glow on hover */
+}
+
+.about-text {
+  flex:1;
+  max-width: 600px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.about-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #ccc;
+  text-align: justify;
+}
+
+/* Responsive (mobile-friendly) */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  .about-image img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.projects-section {
+  margin-top: 50px; /* adjust as needed */
+}
+
+.projects-title {
+  text-align: center;      /* centers the heading */
+  color: white;         /* match your card title color */
+  margin-top: 50px;        /* spacing from previous section */
+  margin-bottom: 40px;     /* spacing below the heading */
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.card {
+  background: #111;
+  color: white;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-title {
+  color: #6c63ff;
+  font-weight: bold;
+}
+
+
+
+
+/* Roles */
+.roles {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px; /* more breathing space between cards */
+  margin-top: 40px;
+}
+
+.role-card {
+  background: #111;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  width: 240px;   /* wider card */
+  height: 320px;  /* slightly taller */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* start content at top */
+  padding: 25px 20px; /* add padding inside */
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.role-card img {
+  width: 150px;   /* bigger image */
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 20px; /* space between img & text */
+  border-radius: 50%; /* circular look */
+  box-shadow: 0 6px 16px rgba(108, 99, 255, 0.4); /* glowing effect */
+}
+
+.role-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+  word-break: break-word; /* ensures breaking between words */
+  max-width: 120px;       /* aligns neatly under the image */
+  margin-top: 20px;  /* 👈 adds space between image and text */
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.role-card:hover {
+  transform: translateY(-10px);
+  border: 2px solid #6c63ff;
+  box-shadow: 0 10px 25px rgba(108, 99, 255, 0.4);
+}
+
+.certificates-title {
+  font-size: 3rem;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  font-family: 'Poppins', sans-serif;
+
+
+}
