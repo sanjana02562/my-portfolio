@@ -3,6 +3,8 @@ Personal Portfolio 🌐
 This is my personal portfolio website built with Flask and Bootstrap.
 It showcases my skills, projects, and a contact form to reach me.
 
+---
+
 🚀 Features
 
 🖼️ Hero section with introduction
@@ -15,6 +17,8 @@ It showcases my skills, projects, and a contact form to reach me.
 
 🎨 Responsive UI with custom CSS
 
+---
+
 🛠️ Tech Stack
 
 Backend: Flask, SQLAlchemy
@@ -24,6 +28,8 @@ Frontend: HTML, CSS, Bootstrap
 Database: SQLite
 
 Email Service: Flask-Mail (SMTP with Gmail)
+
+---
 
 📂 Project Structure
 my_portfolio/
@@ -41,6 +47,8 @@ my_portfolio/
 │── templates/
 │── README.md
 └── .gitignore
+
+---
 
 ⚡ Setup Instructions
 
