@@ -30,9 +30,9 @@ def contact():
             # Send email
             email_msg = MailMessage(
                 subject="New Portfolio Message",
-                recipients=[os.getenv("EMAIL_USER")],
-                body=f"From: {name} ({email})\nMobile: {mobile}\nPosition: {position}\n\nMessage:\n{content}",
-                sender=os.getenv("EMAIL_USER")
+                recipients=[os.getenv("EMAIL_USER")],   # your Gmail address
+                body=f"From: {name} ({email})\nMobile: {request.form.get('mobile')}\nPosition: {request.form.get('position')}\n\n{content}",
+                sender=os.getenv("EMAIL_USER")          # must match your Gmail account
             )
             mail.send(email_msg)
 
