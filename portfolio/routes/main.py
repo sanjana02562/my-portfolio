@@ -14,22 +14,34 @@ def index():
 @main.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
-        name = request.form["name"]
-        email = request.form["email"]
-        content = request.form["message"]
+        try:
+            # Get form data
+            name = request.form.get("name")
+            email = request.form.get("email")
+            mobile = request.form.get("mobile")
+            position = request.form.get("position")
+            content = request.form.get("message")
 
-        msg = Message(name=name, email=email, content=content)
-        db.session.add(msg)
-        db.session.commit()
+            # Save in database
+            msg = Message(name=name, email=email, mobile=mobile, position=position, content=content)
+            db.session.add(msg)
+            db.session.commit()
 
-        email_msg = MailMessage(
-            subject="New Portfolio Message",
-            recipients=[os.getenv("EMAIL_USER")],
-            body=f"From: {name} ({email})\n\n{content}",
-            sender=email
-        )
-        mail.send(email_msg)
+            # Send email
+            email_msg = MailMessage(
+                subject="New Portfolio Message",
+                recipients=[os.getenv("EMAIL_USER")],
+                body=f"From: {name} ({email})\nMobile: {mobile}\nPosition: {position}\n\nMessage:\n{content}",
+                sender=os.getenv("EMAIL_USER")
+            )
+            mail.send(email_msg)
 
-        flash("Message sent successfully!", "success")
-        return redirect("/contact")
-    return render_template("contact.html")
+            flash("Message sent successfully!", "success")
+        except Exception as e:
+            print("Error:", e)
+            flash("Something went wrong. Please try again later.", "danger")
+
+        return redirect("/")  # redirect to home page (index.html)
+    return redirect("/")  # fallback
+
+

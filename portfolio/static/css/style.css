@@ -450,3 +450,64 @@ button {
 
 
 }
+
+
+
+.contact-form .form-control {
+    background-color: #111;  /* Dark like portfolio */
+    border: 1px solid #333;
+    color: #fff;
+    padding: 14px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .contact-form .form-control::placeholder {
+    color: #888;
+  }
+
+  .contact-form .form-control:focus {
+    outline: none;
+    border-color: #4e54c8;
+    box-shadow: 0 0 10px rgba(78, 84, 200, 0.5);
+  }
+
+  /* Labels */
+  .contact-form .form-label {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* Button */
+  .contact-form .btn {
+    background: linear-gradient(90deg, #4e54c8, #8f94fb);
+    border: none;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .contact-form .btn:hover {
+    background: linear-gradient(90deg, #8f94fb, #4e54c8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(143, 148, 251, 0.4);
+  }
+
+  /* Responsive Padding */
+  @media (max-width: 768px) {
+    .contact-section .container {
+      padding: 0 20px;
+    }
+  }
+
+  .alert {
+  background-color: #111;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  position: relative; /* or fixed if you want it sticky */
+  z-index: 1050;
+}

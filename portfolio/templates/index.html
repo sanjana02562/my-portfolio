@@ -6,17 +6,17 @@
     <h1 class="fw-bold">Sanjana Raj</h1>
     <h3>And I'm a <span id="typing"></span></h3>
     <div class="buttons">
-      <a href="resume.pdf" class="btn primary">Get Resume</a>
+      <a href="{{ url_for('static', filename='resume.pdf') }}" target="_blank" class="btn primary">Get Resume</a>
       <a href="#skills" class="btn secondary">Contact Me</a>
     </div>
     <div class="socials">
-      <a href="https://github.com/sanjana02562">
+      <a href="https://github.com/sanjana02562" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" />
       </a>
-      <a href="https://www.linkedin.com/in/sanjana-raj-423a08284/">
+      <a href="https://www.linkedin.com/in/sanjana-raj-423a08284/" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg" />
       </a>
-      <a href="#">
+      <a href="mailto:yourname.contact@gmail.com" target="_blank">
         <i class="fa-solid fa-envelope" style="color: black; font-size: 2.3rem; vertical-align: middle;"></i>
       </a>
     </div>
@@ -107,7 +107,7 @@
 
 <!-- Projects Section -->
 <section class="mb-5 projects-section">
-  <h1 class="projects-title fw-bold">My Projects</h1>
+  <h1 class="projects-title fw-bold" id="projects">My Projects</h1>
   <div class="row">
     {% for project in projects %}
       <div class="col-md-4 mb-4">
@@ -132,7 +132,7 @@
 
 <!-- Certificates Section -->
 <section class="mb-5">
-  <h1 class="certificates-title mb-4 text-center fw-bold">My Certificates</h1> <!-- centered heading -->
+  <h1 class="certificates-title mb-4 text-center fw-bold" id="certificates">My Certificates</h1> <!-- centered heading -->
   <div class="row">
     <div class="col-md-4 mb-4">
       <div class="card shadow-sm">
@@ -147,6 +147,50 @@
     <!-- Add more certificates here -->
   </div>
 </section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section py-5" style="background-color:#000; color:white;">
+  <div class="container" style="max-width:600px;">
+    <h2 class="text-center mb-4" style="font-size:3rem; font-weight:bold; color:#fff;">Contact.</h2>
+    <p class="text-center mb-5" style="color:#aaa;">Get in touch</p>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}" style="margin: 90px auto 20px auto; padding:10px; border-radius:5px; background-color:#111; color:#fff; max-width:600px;">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('main.contact') }}" class="contact-form">
+      <div class="mb-3">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Enter your name" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Your Email</label>
+        <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Your Mobile No.</label>
+        <input type="text" class="form-control" name="mobile" placeholder="Enter your mobile" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Position You're Hiring For</label>
+        <input type="text" class="form-control" name="position" placeholder="Enter your position" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Your Message</label>
+        <textarea class="form-control" name="message" rows="5" placeholder="Enter your message" required></textarea>
+      </div>
+      <button type="submit" class="btn w-100 py-2">Send Message</button>
+    </form>
+  </div>
+</section>
+
 
 
 

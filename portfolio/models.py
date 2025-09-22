@@ -12,10 +12,13 @@ class Project(db.Model):
 
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
-    content = db.Column(db.Text, nullable=False)
+    name = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    mobile = db.Column(db.String(20))        # new column
+    position = db.Column(db.String(100))     # new column
+    content = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)

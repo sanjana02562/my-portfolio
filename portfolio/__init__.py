@@ -1,25 +1,30 @@
 from flask import Flask
 from .extensions import db, mail, login_manager
-from .models import User
+from flask_migrate import Migrate
+import os
 from .routes.main import main
-from .routes.admin import admin
+from .models import User  # make sure User is imported for login_manager
 
 def create_app(config_class="config.Config"):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    
+    # Flask-Mail configuration
+    app.config['MAIL_SERVER'] = os.getenv("MAIL_SERVER")
+    app.config['MAIL_PORT'] = int(os.getenv("MAIL_PORT"))
+    app.config['MAIL_USE_SSL'] = os.getenv("MAIL_USE_SSL") == 'True'
+    app.config['MAIL_USE_TLS'] = os.getenv("MAIL_USE_TLS") == 'True'  # Add this
+    app.config['MAIL_USERNAME'] = os.getenv("EMAIL_USER")
+    app.config['MAIL_PASSWORD'] = os.getenv("EMAIL_PASSWORD")
 
-    # Init extensions
+    # Initialize extensions
     db.init_app(app)
     mail.init_app(app)
     login_manager.init_app(app)
-    login_manager.login_view = "admin.login"
+    migrate = Migrate(app, db)
 
-    # Blueprints
+    # Register blueprints
     app.register_blueprint(main)
-    app.register_blueprint(admin, url_prefix="/admin")
-
-    with app.app_context():
-        db.create_all()
 
     return app
 

@@ -1,4 +1,9 @@
+from dotenv import load_dotenv
+import os
 from portfolio import create_app
+
+# Load .env variables
+load_dotenv()
 
 app = create_app()
 
