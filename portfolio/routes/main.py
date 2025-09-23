@@ -27,21 +27,32 @@ def contact():
             db.session.add(msg)
             db.session.commit()
 
+            # Load email credentials
+            sender_email = os.getenv("EMAIL_USER")
+            recipient_email = os.getenv("EMAIL_USER")
+
+            print("DEBUG: sender =", sender_email)
+            print("DEBUG: recipient =", recipient_email)
+
+            if not sender_email or not recipient_email:
+                flash("Email settings are not configured properly.", "danger")
+                return redirect("/")
+
             # Send email
             email_msg = MailMessage(
-                subject="New Portfolio Message",
-                recipients=[os.getenv("EMAIL_USER")],   # your Gmail address
-                body=f"From: {name} ({email})\nMobile: {request.form.get('mobile')}\nPosition: {request.form.get('position')}\n\n{content}",
-                sender=os.getenv("EMAIL_USER")          # must match your Gmail account
+                subject=f"New Portfolio Message from {name}",
+                recipients=[recipient_email],
+                body=f"From: {name} ({email})\nMobile: {mobile}\nPosition: {position}\n\n{content}",
+                sender=sender_email
             )
             mail.send(email_msg)
 
             flash("Message sent successfully!", "success")
         except Exception as e:
-            print("Error:", e)
+            print("Error in contact route:", e)
             flash("Something went wrong. Please try again later.", "danger")
 
-        return redirect("/")  # redirect to home page (index.html)
-    return redirect("/")  # fallback
+        return redirect("/")
+    return redirect("/")
 
 
