@@ -15,40 +15,45 @@ def index():
 def contact():
     if request.method == "POST":
         try:
+            # Get form data
             name = request.form.get("name")
             email = request.form.get("email")
             mobile = request.form.get("mobile")
             position = request.form.get("position")
             content = request.form.get("message")
 
+            # Save message to database
             msg = Message(name=name, email=email, mobile=mobile, position=position, content=content)
             db.session.add(msg)
             db.session.commit()
 
-
-            sender_email = os.getenv("EMAIL_USER")
-            recipient_email = os.getenv("EMAIL_USER")
+            # Get email settings with fallback
+            sender_email = os.getenv("EMAIL_USER") or "noreply@example.com"
+            recipient_email = os.getenv("EMAIL_USER") or "you@example.com"
 
             print("DEBUG: sender =", sender_email)
             print("DEBUG: recipient =", recipient_email)
 
-            if not sender_email or not recipient_email:
-                flash("Email settings are not configured properly.", "danger")
-                return redirect("/")
-
+            # Prepare email
             email_msg = MailMessage(
                 subject=f"New Portfolio Message from {name}",
                 recipients=[recipient_email],
                 body=f"From: {name} ({email})\nMobile: {mobile}\nPosition: {position}\n\n{content}",
                 sender=sender_email
             )
+
+            # Send email
             mail.send(email_msg)
 
             flash("Message sent successfully!", "success")
+
         except Exception as e:
+            # Print actual error to console for debugging
+            print("ERROR:", e)
             flash("Something went wrong. Please try again later.", "danger")
 
         return redirect("/")
+    
     return redirect("/")
 
 
