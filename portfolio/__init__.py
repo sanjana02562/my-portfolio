@@ -3,17 +3,16 @@ from .extensions import db, mail, login_manager
 from flask_migrate import Migrate
 import os
 from .routes.main import main
-from .models import User  # make sure User is imported for login_manager
+from .models import User 
 
 def create_app(config_class="config.Config"):
     app = Flask(__name__)
     app.config.from_object(config_class)
     
-    # Flask-Mail configuration
     app.config['MAIL_SERVER'] = os.getenv("MAIL_SERVER")
     app.config['MAIL_PORT'] = int(os.getenv("MAIL_PORT"))
     app.config['MAIL_USE_SSL'] = os.getenv("MAIL_USE_SSL") == 'True'
-    app.config['MAIL_USE_TLS'] = os.getenv("MAIL_USE_TLS") == 'True'  # Add this
+    app.config['MAIL_USE_TLS'] = os.getenv("MAIL_USE_TLS") == 'True'  
     app.config['MAIL_USERNAME'] = os.getenv("EMAIL_USER")
     app.config['MAIL_PASSWORD'] = os.getenv("EMAIL_PASSWORD")
 

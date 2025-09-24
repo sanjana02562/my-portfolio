@@ -15,19 +15,17 @@ def index():
 def contact():
     if request.method == "POST":
         try:
-            # Get form data
             name = request.form.get("name")
             email = request.form.get("email")
             mobile = request.form.get("mobile")
             position = request.form.get("position")
             content = request.form.get("message")
 
-            # Save in database
             msg = Message(name=name, email=email, mobile=mobile, position=position, content=content)
             db.session.add(msg)
             db.session.commit()
 
-            # Load email credentials
+
             sender_email = os.getenv("EMAIL_USER")
             recipient_email = os.getenv("EMAIL_USER")
 
@@ -38,7 +36,6 @@ def contact():
                 flash("Email settings are not configured properly.", "danger")
                 return redirect("/")
 
-            # Send email
             email_msg = MailMessage(
                 subject=f"New Portfolio Message from {name}",
                 recipients=[recipient_email],
@@ -49,7 +46,6 @@ def contact():
 
             flash("Message sent successfully!", "success")
         except Exception as e:
-            print("Error in contact route:", e)
             flash("Something went wrong. Please try again later.", "danger")
 
         return redirect("/")

@@ -6,9 +6,6 @@ from portfolio import create_app
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-# Debug
-print("DEBUG EMAIL_USER =", os.getenv("EMAIL_USER"))
-
 app = create_app()
 
 if __name__ == "__main__":
