@@ -33,6 +33,10 @@ def contact():
 
             print("DEBUG: sender =", sender_email)
             print("DEBUG: recipient =", recipient_email)
+            
+            if not sender_email or not recipient_email:
+                flash("Email settings are not configured properly.", "danger")
+                return redirect("/")
 
             # Prepare email
             email_msg = MailMessage(
@@ -50,6 +54,7 @@ def contact():
         except Exception as e:
             # Print actual error to console for debugging
             print("ERROR:", e)
+            traceback.print_exc()
             flash("Something went wrong. Please try again later.", "danger")
 
         return redirect("/")
