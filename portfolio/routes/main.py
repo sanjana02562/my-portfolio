@@ -3,6 +3,8 @@ from ..extensions import db, mail
 from ..models import Project, Message
 from flask_mail import Message as MailMessage
 import os
+import traceback
+
 
 main = Blueprint("main", __name__)
 
