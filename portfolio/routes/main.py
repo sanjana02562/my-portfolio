@@ -32,9 +32,6 @@ def contact():
             # Get email settings with fallback
             sender_email = os.getenv("EMAIL_USER") or "noreply@example.com"
             recipient_email = os.getenv("EMAIL_USER") or "you@example.com"
-
-            print("DEBUG: sender =", sender_email)
-            print("DEBUG: recipient =", recipient_email)
             
             if not sender_email or not recipient_email:
                 flash("Email settings are not configured properly.", "danger")
@@ -54,9 +51,9 @@ def contact():
             flash("Message sent successfully!", "success")
 
         except Exception as e:
-            # Print actual error to console for debugging
-            print("ERROR:", e)
-            traceback.print_exc()
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.exception("Error sending contact form message")
             flash("Something went wrong. Please try again later.", "danger")
 
         return redirect("/")
