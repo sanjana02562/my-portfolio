@@ -6,7 +6,7 @@ from .routes.main import main
 from .models import User 
 
 def create_app(config_class="config.Config"):
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='static')
     app.config.from_object(config_class)
     
     app.config['MAIL_SERVER'] = os.getenv("MAIL_SERVER")
