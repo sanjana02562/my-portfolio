@@ -121,12 +121,93 @@ function PortfolioBackground() {
   );
 }
 
+function PageRevealController() {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document
+        .querySelectorAll(".reveal-on-scroll")
+        .forEach((element) => element.classList.add("is-visible"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.16,
+        rootMargin: "0px 0px -8% 0px"
+      }
+    );
+
+    document
+      .querySelectorAll(".reveal-on-scroll")
+      .forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return null;
+}
+
+function ScrollReveal({ children, className = "", delay = 0 }) {
+  const itemRef = useRef(null);
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  useEffect(() => {
+    const element = itemRef.current;
+
+    if (!element) {
+      return undefined;
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIsVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.18,
+        rootMargin: "0px 0px -7% 0px"
+      }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={itemRef}
+      className={`reveal-on-scroll ${isVisible ? "is-visible" : ""} ${className}`}
+      style={{ "--reveal-delay": `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+}
+
 function RoleCard({ role }) {
   return (
-    <div className="role-card">
-      <img src={role.image} alt={role.title} />
-      <h3>{role.title}</h3>
-    </div>
+    <ScrollReveal>
+      <div className="role-card">
+        <img src={role.image} alt={role.title} />
+        <h3>{role.title}</h3>
+      </div>
+    </ScrollReveal>
   );
 }
 
@@ -165,7 +246,7 @@ function SkillsSlider({ skills = [] }) {
 
 function ProjectCard({ project }) {
   return (
-    <div className="col-md-4 mb-4">
+    <ScrollReveal className="col-md-4 mb-4">
       <div className="card h-100 shadow-sm">
         {project.image && (
           <img src={project.image} className="card-img-top" alt={project.title} />
@@ -185,7 +266,7 @@ function ProjectCard({ project }) {
           )}
         </div>
       </div>
-    </div>
+    </ScrollReveal>
   );
 }
 
@@ -204,7 +285,7 @@ function ProjectsGrid({ projects = [] }) {
 
 function CertificateCard({ certificate }) {
   return (
-    <div className="col-md-4 mb-4">
+    <ScrollReveal className="col-md-4 mb-4">
       <div className="card shadow-sm">
         <div className="card-body">
           <h5 className="card-title">{certificate.title}</h5>
@@ -219,7 +300,7 @@ function CertificateCard({ certificate }) {
           </a>
         </div>
       </div>
-    </div>
+    </ScrollReveal>
   );
 }
 
@@ -244,6 +325,7 @@ function renderReactApp(rootId, component) {
 const portfolioData = window.portfolioData || {};
 
 renderReactApp("portfolio-background", <PortfolioBackground />);
+renderReactApp("page-effects-root", <PageRevealController />);
 renderReactApp("roles-root", <RolesList roles={portfolioData.roles} />);
 renderReactApp("skills-root", <SkillsSlider skills={portfolioData.skills} />);
 renderReactApp("projects-root", <ProjectsGrid projects={portfolioData.projects} />);
