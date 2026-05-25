@@ -1,12 +1,68 @@
 {% extends "base.html" %}
 {% block content %}
+<script>
+  window.portfolioData = {
+    roles: [
+      {
+        title: "Python Developer",
+        image: "{{ url_for('static', filename='images/python.webp') }}"
+      },
+      {
+        title: "React Developer",
+        image: "{{ url_for('static', filename='images/react.png') }}"
+      },
+      {
+        title: "Prompt Engineer",
+        image: "{{ url_for('static', filename='images/prompt.jpg') }}"
+      }
+    ],
+    skills: [
+      { name: "HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
+      { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
+      { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
+      { name: "Flask", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" },
+      { name: "Django", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" },
+      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" },
+      { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
+      { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" },
+      { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+      { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" }
+    ],
+    projects: [
+      {% for project in projects %}
+        {
+          title: {{ project.title|tojson }},
+          description: {{ project.description|tojson }},
+          link: {{ project.link|tojson }},
+          image: {% if project.image %}{{ url_for('static', filename='images/' ~ project.image)|tojson }}{% else %}null{% endif %}
+        }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ],
+    certificates: [
+      {
+        title: "Python Full Stack",
+        issuer: "Issued by EduSkills Academy",
+        link: "{{ url_for('static', filename='certificates/python_fullstack.pdf') }}"
+      },
+      {
+        title: "Generative AI",
+        issuer: "Issued by NASSCOM",
+        link: "{{ url_for('static', filename='certificates/GenerativeAI.pdf') }}"
+      }
+    ]
+  };
+</script>
+
 <section class="hero">
   <div class="hero-content">
+    <p class="eyebrow">Full-stack Python Developer</p>
     <h5>Hello, It's me</h5>
     <h1 class="fw-bold">Sanjana Raj</h1>
     <h3>And I'm a <span id="typing"></span></h3>
     <div class="buttons">
-      <a href="https://drive.google.com/file/d/1tKSa4rWVuL2DOucjLM2nWSOC0FkmtrYi/view?usp=sharing" target="_blank" class="btn primary">Get Resume</a>
+      <a href="https://drive.google.com/file/d/1GZYKPnlVnF01vHnrk6l8g2jF7d3-epAx/view?usp=sharing" target="_blank" class="btn primary">Get Resume</a>
       <a href="#contact" class="btn secondary">Contact Me</a>
     </div>
     <div class="socials">
@@ -17,14 +73,16 @@
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg" />
       </a>
       <a href="mailto:yourname.contact@gmail.com" target="_blank">
-        <i class="fa-solid fa-envelope" style="color: black; font-size: 2.3rem; vertical-align: middle;"></i>
+        <i class="fa-solid fa-envelope"></i>
       </a>
     </div>
   </div>
 
   <div class="hero-image">
-    <img src="{{ url_for('static', filename='images/pp.jpg') }}" 
+    <div class="profile-frame">
+    <img src="{{ url_for('static', filename='images/PP.jpg') }}" 
          alt="My Photo" class="profile-pic">
+    </div>
   </div>
 </section>
 
@@ -33,7 +91,7 @@
   <div class="about-container">
     <!-- Left Side: Image -->
     <div class="about-image">
-      <img src="{{ url_for('static', filename='images/pp.jpg') }}" alt="About Me">
+      <img src="{{ url_for('static', filename='images/PP.jpg') }}" alt="About Me">
     </div>
 
     <!-- Right Side: Text -->
@@ -50,18 +108,7 @@
 </section>
 
 
-<div class="roles">
-  <!-- New ones -->
-  <div class="role-card">
-    <img src="{{ url_for('static', filename='images/python.webp') }}" alt="Python Developer">
-    <h3>Python Developer</h3>
-  </div>
-
-  <div class="role-card">
-    <img src="{{ url_for('static', filename='images/prompt.jpg') }}" alt="Prompt Engineer">
-    <h3>Prompt Engineer</h3>
-  </div>
-</div>
+<div id="roles-root" class="roles"></div>
 
 
 
@@ -69,37 +116,7 @@
 <section id="skills">
   <h1 class="fw-bold">My Skills</h1>
 
-  <div class="skills-slider">
-    <div class="skills-track">
-
-      <!-- Skill cards -->
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML"><span>HTML</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS"><span>CSS</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"><span>JavaScript</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" alt="Flask"><span>Flask</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" alt="Django"><span>Django</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"><span>Git</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman"><span>Postman</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"><span>MySQL</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" alt="FastAPI"><span>FastAPI</span></div>
-
-      <!-- Duplicate for seamless loop -->
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML"><span>HTML</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS"><span>CSS</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript"><span>JavaScript</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" alt="Flask"><span>Flask</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" alt="Django"><span>Django</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"><span>Git</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman"><span>Postman</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"><span>MySQL</span></div>
-      <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" alt="FastAPI"><span>FastAPI</span></div>
-
-    </div>
-  </div>
+  <div id="skills-root"></div>
 </section>
 
 
@@ -108,57 +125,18 @@
 <!-- Projects Section -->
 <section class="mb-5 projects-section">
   <h1 class="projects-title fw-bold" id="projects">My Projects</h1>
-  <div class="row">
-    {% for project in projects %}
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          {% if project.image %}
-            <img src="{{ url_for('static', filename='images/' ~ project.image) }}" 
-                 class="card-img-top" alt="{{ project.title }}">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ project.title }}</h5>
-            <p class="card-text">{{ project.description }}</p>
-            {% if project.link %}
-              <a href="{{ project.link }}" target="_blank" class="btn btn-primary">View Project</a>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
+  <div id="projects-root" class="row"></div>
 </section>
 
 
 <!-- Certificates Section -->
 <section class="mb-5">
   <h1 class="certificates-title mb-4 text-center fw-bold" id="certificates">My Certificates</h1> <!-- centered heading -->
-  <div class="row">
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">Python Full Stack</h5>
-          <p class="card-text">Issued by EduSkills Academy</p>
-          <a href="{{ url_for('static', filename='certificates/python_fullstack.pdf') }}" 
-             target="_blank" class="btn btn-outline-primary">View Certificate</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">Generative AI</h5>
-          <p class="card-text">Issued by NASSCOM</p>
-          <a href="{{ url_for('static', filename='certificates/GenerativeAI.pdf') }}" 
-             target="_blank" class="btn btn-outline-primary">View Certificate</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="certificates-root" class="row"></div>
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="contact-section py-5" style="background-color:#000; color:white;">
+<section id="contact" class="contact-section py-5">
   <div class="container" style="max-width:600px;">
     <h2 class="text-center mb-4" style="font-size:3rem; font-weight:bold; color:#fff;">Contact.</h2>
     <p class="text-center mb-5" style="color:#aaa;">Get in touch</p>
