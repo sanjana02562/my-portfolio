@@ -978,6 +978,11 @@ body footer.bg-dark {
 }
 
 .reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-ready .reveal-on-scroll {
   opacity: 0;
   transform: translateY(34px);
   transition:
@@ -987,13 +992,13 @@ body footer.bg-dark {
   will-change: opacity, transform;
 }
 
-.reveal-on-scroll.is-visible {
+.reveal-ready .reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal-on-scroll {
+  .reveal-ready .reveal-on-scroll {
     opacity: 1;
     transform: none;
     transition: none;
